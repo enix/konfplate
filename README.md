@@ -47,3 +47,7 @@ optional arguments:
 The complete environment will be loaded by default. To limit to specific
 environment variables use the --env flag.
 ```
+
+## todo
+- implement a the go templating language
+- implement a HashiCorp Vault client in order to mix local and vault based secrets
