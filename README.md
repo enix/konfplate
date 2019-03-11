@@ -48,6 +48,67 @@ The complete environment will be loaded by default. To limit to specific
 environment variables use the --env flag.
 ```
 
+## kubernetes spec
+Here is a typical spec to use config-template:
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testpod
+  labels:
+    app: testpod
+spec:
+  initContainers:
+  - name: config-template
+    image: docker-registry.enix.io/docker/config-template/master:0e246491966e1c8bcdfc24e1bf1d410dccf293f9
+    command:
+      - ./config-template.py
+      - --template=/templates/test.conf.template
+      - --output=/rendered/test.conf
+      - --env=PATH
+      - --file=/templates/test.file
+      - --json=/templates/test.json
+    volumeMounts:
+    - name: config-template-volume
+      mountPath: /templates
+    - name: config-rendered-volume
+      mountPath: /rendered
+  containers:
+  - name: testpod
+    image: busybox
+    command: ['sh', '-c', 'echo The app is running! && sleep 3600']
+    volumeMounts:
+    - name: config-rendered-volume
+      mountPath: /etc/config/
+  volumes:
+    - name: config-template-volume
+      configMap:
+        name: config-template
+    - name: config-rendered-volume
+      emptyDir: {}
+  imagePullSecrets:
+  - name: enix
+```
+it is based on a configMap:
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-template
+data:
+  test.conf.template: |-
+    This is a configuration template used for test purposes.
+    It will render a typical env value >{{ env.PATH }}<,
+    a file >{{ file.test_file }}<,
+    a json file >{{ json.test_json.name }}<,
+    and finally a missing value >{{ dummy }}<
+  test.file: a value extracted from a file
+  test.json: |-
+    {
+      "name": "a name extracted from a json file"
+    }
+```
+
 ## todo
 - implement a the go templating language
 - implement a HashiCorp Vault client in order to mix local and vault based secrets
