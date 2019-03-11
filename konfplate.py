@@ -15,7 +15,7 @@ parser.add_argument('-e', '--env', action='append', metavar='ENV_VAR', help='One
 parser.add_argument('-f', '--file', action='append', metavar='FILE_PATH', help='One or more file to load as text')
 parser.add_argument('-j', '--json', action='append', metavar='JSON_PATH', help='One or more JSON file to load as an object each')
 
-parser.add_argument("-l", "--loglevel", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default='WARNING', help="Set the logging level, default: %(default)s")
+parser.add_argument("-l", "--loglevel", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default='INFO', help="Set the logging level, default: %(default)s")
 parser.add_argument('--version', action='version', version=os.getenv('KONFPLATE_VERSION'))
 
 args = parser.parse_args()
