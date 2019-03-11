@@ -111,6 +111,10 @@ In an ideal setup, Kubernetes secrets would be loaded through files and loaded w
 
 You might also want to have more than one *InitContainer* in order to render several configuration files.
 
+## troubleshoot
+The logs of the *InitContainer* are available though the usual kubectl command line:
+`kubectl logs <pod_name> -c konfplate`
+
 ## todo
 - implement a go templating version
 - implement a HashiCorp Vault client in order to mix local and vault based secrets
