@@ -60,7 +60,7 @@ metadata:
 spec:
   initContainers:
   - name: config-template
-    image: docker-registry.enix.io/docker/konfplate/master:0e246491966e1c8bcdfc24e1bf1d410dccf293f9
+    image: docker-registry.enix.io/docker/konfplate/master:6289f07641f6c6528b4db100653ce156f8b98b12
     command:
       - ./konfplate
       - --template=/templates/test.conf.template
@@ -108,6 +108,8 @@ data:
       "name": "a name extracted from a json file"
     }
 ```
+
+In an ideal setup, Kubernetes secrets would be loaded through files and loaded with the `--file` flag and the template would not be in the same configMap.
 
 ## todo
 - implement a go templating version

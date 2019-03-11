@@ -23,10 +23,10 @@ metadata:
     app: testpod
 spec:
   initContainers:
-  - name: config-template
-    image: docker-registry.enix.io/docker/config-template/master:0e246491966e1c8bcdfc24e1bf1d410dccf293f9
+  - name: konfplate
+    image: docker-registry.enix.io/docker/konfplate/master:6289f07641f6c6528b4db100653ce156f8b98b12
     command:
-      - ./config-template.py
+      - ./konfplate
       - --template=/templates/test.conf.template
       - --output=/rendered/test.conf
       - --env=PATH
