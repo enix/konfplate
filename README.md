@@ -59,7 +59,7 @@ metadata:
 spec:
   initContainers:
   - name: config-template
-    image: docker-registry.enix.io/docker/konfplate/master:6289f07641f6c6528b4db100653ce156f8b98b12
+    image: enix/konfplate:1
     command:
       - ./konfplate
       - --template=/templates/test.conf.template
@@ -85,8 +85,6 @@ spec:
         name: config-template
     - name: config-rendered-volume
       emptyDir: {}
-  imagePullSecrets:
-  - name: enix
 ```
 it is based on a configMap:
 ```
