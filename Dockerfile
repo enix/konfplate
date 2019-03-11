@@ -9,7 +9,8 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY config-template.py .
+RUN chmod +x config-template.py
 
 ENV CONFIG_TEMPLATE_VERSION=$VERSION TRUC=12
-ENTRYPOINT [ "python", "./config-template.py" ]
+ENTRYPOINT [ "./config-template.py" ]
 CMD [ "--help" ]
