@@ -61,3 +61,5 @@ logging.debug("data object:%s", data)
 with open(args.template) as templateFile:
     template = Template(templateFile.read())
 template.stream(data).dump(args.output)
+
+logging.info("configuration template completed")
