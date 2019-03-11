@@ -1,9 +1,8 @@
 # Konfplate
 
-A docker image aimed to be used as an initContainer in Kubernetes to facilitate configuration templating
+A docker image aimed to be used as an initContainer in Kubernetes to facilitate configuration templating.
 
 It is considered good pratice to build application containers with embedded configuration templating.
-
 However, this may be both *time consuming* and *not needed* while using a container orchestration solution.
 
 Kubernetes proposes a simple way to launch a processus before your real application / container / pod is started, which is named *InitContainers*.
