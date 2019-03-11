@@ -118,5 +118,10 @@ You might also want to have more than one *InitContainer* in order to render sev
 - implement a go templating version
 - implement a HashiCorp Vault client in order to mix local and vault based secrets
 
-## credits
+# License
+Copyright (c) ENIX S.A.S. Corporation. All rights reserved.
+
+Licensed under the [MIT License](LICENSE).
+
+# credits
 A bit thanks to the [envplate](https://github.com/kreuzwerker/envplate) project which helped a lot in building simple to use containers.
