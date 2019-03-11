@@ -1,4 +1,4 @@
-# Config Template
+# Konfplate
 
 A docker image aimed to be used as an initContainer in Kubernetes to facilitate configuration templating
 
@@ -8,7 +8,7 @@ However, this may be both *time consuming* and *not needed* while using a contai
 
 Kubernetes proposes a simple way to launch a processus before your real application / container / pod is started, which is named *InitContainers*.
 
-This docker image is a perfect option to use *InitContainers* as configuration template renderer.
+This docker image is a perfect option to use *InitContainers* as a configuration template renderer.
 
 ## in details
 
@@ -24,7 +24,7 @@ The image take 5 kinds of parameters as an input :
 
 ## how to use
 ```
-usage: config-template.py [-h] -t TEMPLATE -o OUTPUT [-e ENV_VAR]
+usage: konfplate [-h] -t TEMPLATE -o OUTPUT [-e ENV_VAR]
                           [-f FILE_PATH] [-j JSON_PATH]
                           [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--version]
 
@@ -49,7 +49,7 @@ environment variables use the --env flag.
 ```
 
 ## kubernetes spec
-Here is a typical spec to use config-template:
+Here is a typical spec to use konfplate:
 ```
 apiVersion: v1
 kind: Pod
@@ -60,9 +60,9 @@ metadata:
 spec:
   initContainers:
   - name: config-template
-    image: docker-registry.enix.io/docker/config-template/master:0e246491966e1c8bcdfc24e1bf1d410dccf293f9
+    image: docker-registry.enix.io/docker/konfplate/master:0e246491966e1c8bcdfc24e1bf1d410dccf293f9
     command:
-      - ./config-template.py
+      - ./konfplate
       - --template=/templates/test.conf.template
       - --output=/rendered/test.conf
       - --env=PATH
@@ -110,5 +110,8 @@ data:
 ```
 
 ## todo
-- implement a the go templating language
+- implement a go templating version
 - implement a HashiCorp Vault client in order to mix local and vault based secrets
+
+## credits
+A bit thanks to the [envplate](https://github.com/kreuzwerker/envplate) project which helped a lot in building simple to use containers.

@@ -1,16 +1,16 @@
 FROM python:alpine
 
 ARG VERSION=0.1
-LABEL config_template_version=$VERSION
+LABEL konfplate_version=$VERSION
 
 WORKDIR /src/config-template
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY config-template.py .
-RUN chmod +x config-template.py
+COPY konfplate.py konfplate
+RUN chmod +x konfplate.py
 
-ENV CONFIG_TEMPLATE_VERSION=$VERSION TRUC=12
-ENTRYPOINT [ "./config-template.py" ]
+ENV KONFPLATE_VERSION=$VERSION
+ENTRYPOINT [ "./konfplate.py" ]
 CMD [ "--help" ]
