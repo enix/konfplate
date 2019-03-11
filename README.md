@@ -108,8 +108,11 @@ data:
       "name": "a name extracted from a json file"
     }
 ```
+Both these specs are available [here](manifests/container-with-templated-configuration.pod.yaml).
 
 In an ideal setup, Kubernetes secrets would be loaded through files and loaded with the `--file` flag and the template would not be in the same configMap.
+
+You might also want to have more than one *InitContainer* in order to render several configuration files.
 
 ## todo
 - implement a go templating version
