@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse, os, logging, json
 from jinja2 import Template
 
@@ -35,22 +37,24 @@ else:
 	data['env'] = os.environ
 
 data['file'] = dict()
-for k in args.file:
-	dummy, filename = os.path.split(k)
-	try:
-		with open(k) as valueFile:
-			data['file'][filename.replace('.','_')] = valueFile.read()
-	except FileNotFoundError as error:
-			logging.warning(error)
+if args.file:
+	for k in args.file:
+		dummy, filename = os.path.split(k)
+		try:
+			with open(k) as valueFile:
+				data['file'][filename.replace('.','_')] = valueFile.read()
+		except FileNotFoundError as error:
+				logging.warning(error)
 
 data['json'] = dict()
-for k in args.json:
-	dummy, filename = os.path.split(k)
-	try:
-		with open(k) as valueFile:
-			data['json'][filename.replace('.','_')] = json.load(valueFile)
-	except FileNotFoundError as error:
-			logging.warning(error)
+if args.json:
+	for k in args.json:
+		dummy, filename = os.path.split(k)
+		try:
+			with open(k) as valueFile:
+				data['json'][filename.replace('.','_')] = json.load(valueFile)
+		except FileNotFoundError as error:
+				logging.warning(error)
 
 logging.debug("data object:%s", data)
 
