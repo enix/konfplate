@@ -62,4 +62,4 @@ with open(args.template) as templateFile:
     template = Template(templateFile.read())
 template.stream(data).dump(args.output)
 
-logging.info("configuration template completed")
+logging.info("configuration template rendered")
