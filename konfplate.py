@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import argparse, os, logging, json
+import argparse, os, logging, json, sys
 from jinja2 import Template
 
 parser = argparse.ArgumentParser(epilog="""
@@ -9,7 +9,7 @@ To limit to specific environment variables use the --env flag.
 """)
 
 parser.add_argument('-t', '--template', required=True, help='A configuration template')
-parser.add_argument('-o', '--output', required=True, help='A path to write the rendered configuration to')
+parser.add_argument('-o', '--output', default="-", help='A path to write the rendered configuration to')
 
 parser.add_argument('-e', '--env', action='append', metavar='ENV_VAR', help='One or more environment variable to load')
 parser.add_argument('-f', '--file', action='append', metavar='FILE_PATH', help='One or more file to load as text')
@@ -60,6 +60,6 @@ logging.debug("data object:%s", data)
 
 with open(args.template) as templateFile:
     template = Template(templateFile.read())
-template.stream(data).dump(args.output)
+template.stream(data).dump(sys.stdout if args.output == "-" else args.output)
 
 logging.info("configuration template rendered")
