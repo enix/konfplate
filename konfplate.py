@@ -8,7 +8,7 @@ The complete environment will be loaded by default.
 To limit to specific environment variables use the --env flag.
 """)
 
-parser.add_argument('-t', '--template', required=True, help='A configuration template')
+parser.add_argument('-t', '--template', default="-", help='A configuration template')
 parser.add_argument('-o', '--output', default="-", help='A path to write the rendered configuration to')
 
 parser.add_argument('-e', '--env', action='append', metavar='ENV_VAR', help='One or more environment variable to load')
@@ -60,7 +60,7 @@ if args.json:
 
 logging.debug("Template Environment: %s", data)
 
-with open(args.template) as templateFile:
+with sys.stdin if args.template == "-" else open(args.template) as templateFile:
     template = Template(templateFile.read())
 template.stream(data).dump(sys.stdout if args.output == "-" else args.output)
 
