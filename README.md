@@ -62,7 +62,7 @@ spec:
     image: enix/konfplate:1
     command:
       - ./konfplate
-      - --template=/templates/test.conf.template
+      - --template=/templates/test.conf.jinga
       - --output=/rendered/test.conf
       - --env=PATH
       - --file=/templates/test.file
@@ -93,7 +93,7 @@ kind: ConfigMap
 metadata:
   name: config-template
 data:
-  test.conf.template: |-
+  test.conf.jinga: |-
     This is a configuration template used for test purposes.
     It will render a typical env value >{{ env.PATH }}<,
     a file >{{ file.test_file }}<,
