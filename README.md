@@ -23,9 +23,8 @@ The image take 5 kinds of parameters as an input :
 
 ## how to use
 ```
-usage: konfplate [-h] -t TEMPLATE -o OUTPUT [-e ENV_VAR]
-                          [-f FILE_PATH] [-j JSON_PATH]
-                          [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--version]
+usage: konfplate [-h] [-t TEMPLATE] [-o OUTPUT] [-e ENV_VAR] [-f FILE_PATH]
+                 [-j JSON_PATH] [-d]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -34,17 +33,13 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                         A path to write the rendered configuration to
   -e ENV_VAR, --env ENV_VAR
-                        One or more environment variable to load
+                        One or more environment variable to load (default:
+                        load the complete environment)
   -f FILE_PATH, --file FILE_PATH
                         One or more file to load as text
   -j JSON_PATH, --json JSON_PATH
                         One or more JSON file to load as an object each
-  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}
-                        Set the logging level, default: WARNING
-  --version             show program's version number and exit
-
-The complete environment will be loaded by default. To limit to specific
-environment variables use the --env flag.
+  -d, --debug           Enable debug mode
 ```
 
 ## kubernetes spec

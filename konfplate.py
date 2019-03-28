@@ -3,15 +3,12 @@
 import argparse, os, logging, json, sys
 from jinja2 import Template
 
-parser = argparse.ArgumentParser(epilog="""
-The complete environment will be loaded by default.
-To limit to specific environment variables use the --env flag.
-""")
+parser = argparse.ArgumentParser()
 
 parser.add_argument('-t', '--template', default="-", help='A configuration template')
 parser.add_argument('-o', '--output', default="-", help='A path to write the rendered configuration to')
 
-parser.add_argument('-e', '--env', action='append', metavar='ENV_VAR', help='One or more environment variable to load')
+parser.add_argument('-e', '--env', action='append', metavar='ENV_VAR', help='One or more environment variable to load (default: load the complete environment)')
 parser.add_argument('-f', '--file', action='append', metavar='FILE_PATH', help='One or more file to load as text')
 parser.add_argument('-j', '--json', action='append', metavar='JSON_PATH', help='One or more JSON file to load as an object each')
 
