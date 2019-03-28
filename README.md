@@ -11,8 +11,9 @@ This docker image is a perfect option to use *InitContainers* as a configuration
 
 ## in details
 
-It is implemented in Python and uses the [jinja2](http://jinja.pocoo.org/) template engine.
-*It might also be available as go template version in the future based on community feedback*
+Konfplate currently exists in two flavors: the first one is implemented in Python and uses the
+[jinja2](http://jinja.pocoo.org/) template engine and the second one is implemented in Go and uses its
+[standard template engine](https://golang.org/pkg/text/template/).
 
 The image take 5 kinds of parameters as an input :
 - a single configuration template file (written in jinja2)
@@ -22,6 +23,9 @@ The image take 5 kinds of parameters as an input :
 - an optional comma separated list of objects, represented in JSON, to load through files
 
 ## how to use
+
+Here is the usage for the Python version:
+
 ```
 usage: konfplate [-h] [-t TEMPLATE] [-o OUTPUT] [-e ENV_VAR] [-f FILE_PATH]
                  [-j JSON_PATH] [-d]
@@ -41,6 +45,27 @@ optional arguments:
                         One or more JSON file to load as an object each
   -d, --debug           Enable debug mode
 ```
+
+And here is the usage for the Go version:
+
+```
+Usage of konfplate:
+  -d, --debug             Enable debug mode
+  -e, --env strings       One or more environment variable to load (default: load the complete environment)
+  -f, --file strings      One or more file to load as text
+  -j, --json strings      One or more JSON file to load as an object each
+  -o, --output string     A path to write the rendered configuration to (default "-")
+  -t, --template string   A configuration template (default "-")
+```
+
+As you can see, the usage of both tool is pretty similar so you can easily interchange them.
+
+To choose between the two flavors, use the docker image tags. For example for the latest version of the tool:
+
+- enix/konfplate:jinja-latest
+- enix/konfplate:gotpl-latest
+
+The complete list of tags is available on the [docker hub](https://hub.docker.com/r/enix/konfplate/tags).
 
 ## kubernetes spec
 Here is a typical spec to use konfplate:
@@ -111,7 +136,6 @@ The logs of the *InitContainer* are available though the usual kubectl command l
 `kubectl logs <pod_name> -c konfplate`
 
 ## todo
-- implement a go templating version
 - implement a HashiCorp Vault client in order to mix local and vault based secrets
 
 # License
