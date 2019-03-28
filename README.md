@@ -11,11 +11,11 @@ This docker image is a perfect option to use *InitContainers* as a configuration
 
 ## in details
 
-It is implemented in Python and uses the [jinga2](http://jinja.pocoo.org/) template engine.
+It is implemented in Python and uses the [jinja2](http://jinja.pocoo.org/) template engine.
 *It might also be available as go template version in the future based on community feedback*
 
 The image take 5 kinds of parameters as an input :
-- a single configuration template file (written in jinga2)
+- a single configuration template file (written in jinja2)
 - a location (a path) to push the rendered configuration
 - an optional comma separated list of secrets or values to load through environment
 - an optional comma separated list of secrets or values to load through files
@@ -57,7 +57,7 @@ spec:
     image: enix/konfplate:1
     command:
       - ./konfplate
-      - --template=/templates/test.conf.jinga
+      - --template=/templates/test.conf.jinja
       - --output=/rendered/test.conf
       - --env=PATH
       - --file=/templates/test.file
@@ -88,7 +88,7 @@ kind: ConfigMap
 metadata:
   name: config-template
 data:
-  test.conf.jinga: |-
+  test.conf.jinja: |-
     This is a configuration template used for test purposes.
     It will render a typical env value >{{ env.PATH }}<,
     a file >{{ file.test_file }}<,
