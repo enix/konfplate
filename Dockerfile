@@ -12,5 +12,5 @@ COPY konfplate.py konfplate
 RUN chmod +x konfplate
 
 ENV KONFPLATE_VERSION=$VERSION
-ENTRYPOINT [ "./konfplate.py" ]
+ENTRYPOINT [ "./konfplate" ]
 CMD [ "--help" ]
