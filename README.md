@@ -54,7 +54,7 @@ metadata:
 spec:
   initContainers:
   - name: config-template
-    image: enix/konfplate:1
+    image: enix/konfplate:jinja-2
     command:
       - ./konfplate
       - --template=/templates/test.conf.jinja
