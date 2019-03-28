@@ -1,0 +1,5 @@
+This is a configuration template used for test purposes.
+It will render a typical env value >{{ .env.PATH }}<,
+a file >{{ .file.test_file }}<,
+a json file >{{ .json.test_json.name }}<,
+and finally a missing value >{{ .dummy }}<
