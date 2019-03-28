@@ -9,7 +9,7 @@ Kubernetes proposes a simple way to launch a processus before your real applicat
 
 This docker image is a perfect option to use *InitContainers* as a configuration template renderer.
 
-## in details
+## In details
 
 Konfplate currently exists in two flavors: the first one is implemented in Python and uses the
 [jinja2](http://jinja.pocoo.org/) template engine and the second one is implemented in Go and uses its
@@ -22,7 +22,7 @@ The image take 5 kinds of parameters as an input :
 - an optional comma separated list of secrets or values to load through files
 - an optional comma separated list of objects, represented in JSON, to load through files
 
-## how to use
+## How to use
 
 Here is the usage for the Python version:
 
@@ -67,7 +67,7 @@ To choose between the two flavors, use the docker image tags. For example for th
 
 The complete list of tags is available on the [docker hub](https://hub.docker.com/r/enix/konfplate/tags).
 
-## kubernetes spec
+## Kubernetes spec
 Here is a typical spec to use konfplate:
 ```
 apiVersion: v1
@@ -131,11 +131,11 @@ In an ideal setup, Kubernetes secrets would be loaded through files and loaded w
 
 You might also want to have more than one *InitContainer* in order to render several configuration files.
 
-## troubleshoot
+## Troubleshoot
 The logs of the *InitContainer* are available though the usual kubectl command line:
 `kubectl logs <pod_name> -c konfplate`
 
-## todo
+## Todo
 - implement a HashiCorp Vault client in order to mix local and vault based secrets
 
 # License
@@ -143,5 +143,5 @@ Copyright (c) ENIX S.A.S. Corporation. All rights reserved.
 
 Licensed under the [MIT License](LICENSE).
 
-# credits
+# Credits
 A bit thanks to the [envplate](https://github.com/kreuzwerker/envplate) project which helped a lot in building simple to use containers.
