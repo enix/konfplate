@@ -40,8 +40,8 @@ if args.file:
 	for k in args.file:
 		dummy, filename = os.path.split(k)
 		try:
-			with open(k) as valueFile:
-				data['file'][filename.replace('.','_')] = valueFile.read()
+			with open(k) as valuefile:
+				data['file'][filename.replace('.','_')] = valuefile.read()
 		except FileNotFoundError as error:
 				logging.warning(error)
 
@@ -50,15 +50,15 @@ if args.json:
 	for k in args.json:
 		dummy, filename = os.path.split(k)
 		try:
-			with open(k) as valueFile:
-				data['json'][filename.replace('.','_')] = json.load(valueFile)
+			with open(k) as valuefile:
+				data['json'][filename.replace('.','_')] = json.load(valuefile)
 		except FileNotFoundError as error:
 				logging.warning(error)
 
 logging.debug("Template Environment: %s", data)
 
-with sys.stdin if args.template == "-" else open(args.template) as templateFile:
-    template = Template(templateFile.read())
+with sys.stdin if args.template == "-" else open(args.template) as templatefile:
+    template = Template(templatefile.read())
 template.stream(data).dump(sys.stdout if args.output == "-" else args.output)
 
 logging.info("configuration template rendered")
